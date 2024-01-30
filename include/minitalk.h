@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:54:06 by avialle-          #+#    #+#             */
-/*   Updated: 2024/01/25 11:09:09 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:13:02 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,5 @@
 # include <unistd.h>
 # include <stdio.h>
 
-int	main(void);
-int	main(int ac, char **av);
 
 #endif

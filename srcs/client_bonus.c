@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 08:39:34 by avialle-          #+#    #+#             */
-/*   Updated: 2024/01/30 13:45:19 by avialle-         ###   ########.fr       */
+/*   Created: 2024/01/30 11:23:52 by avialle-          #+#    #+#             */
+/*   Updated: 2024/01/30 11:51:24 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
+
 int	g_bit_hander;
 
 void validation_server(int signal)
@@ -27,11 +28,10 @@ void	send_bit(int pid, char c)
 {
 	int	bit;
 
-	bit = __CHAR_BIT__ * sizeof(c) - 1;
-	while (bit >= 0)
+	bit = 0;
+	while (bit < 8)
 	{
-		g_bit_handler = 0;
-		if ((c & (1 << bit)) != 0)
+		if (c & (0x01 << bit) != 0)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 	pid = check_args(ac, av);
 	i = -1;
 	signal(SIGUSR1, validation_server);
-	signal(SIGUSR2, validation_Server);
+	signal(SIGUSR2, validation_server);
 	while (av[2][++i])
 		send_bit(pid, av[2][i]);
 	send_bit(pid, '\n');
@@ -57,4 +57,3 @@ int	main(int ac, char **av)
 		pause();
 	return (0);
 }
-

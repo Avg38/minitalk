@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 08:39:31 by avialle-          #+#    #+#             */
-/*   Updated: 2024/01/30 13:44:38 by avialle-         ###   ########.fr       */
+/*   Created: 2024/01/30 11:23:47 by avialle-          #+#    #+#             */
+/*   Updated: 2024/01/30 13:44:32 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-void	signal_handler(int signal, siginfo_t *info, void *context)
+void	signal_handler(int signal, siginfo *info, void *context)
 {
-	static unsigned char	c;
+	static unsigned	char	c;
 	static int				bit;
 
 	c = 0;
@@ -40,10 +40,10 @@ void	signal_handler(int signal, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	sigset_t			signals;
 	struct sigaction	action;
+	sigset_t			signals;
 
-	sigemptyset(&signals);
+	sigemptyset(&signal);
 	sigaddset(&signals, SIGUSR1);
 	sigaddset(&signals, SIGUSR2);
 	action.sa_flags = SA_SIGINFO;
@@ -52,9 +52,8 @@ int	main(void)
 	action.sa_sigaction = signal_handler;
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
-	printf("PID: %d\n", getpid());
+	ft_printf("PID: %d\n", getpid());
 	while (1)
 		pause();
-	reutrn (0);
+	return (0);
 }
-
