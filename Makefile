@@ -35,10 +35,10 @@ bonus: $(NAME_CLIENT_BONUS) $(NAME_SERVER_BONUS)
 	@gcc ${CFLAGS} -c $< -o $@
 
 clean:
-	@$(RM) $(OBJS_CLIENT) $(OBJS_SERVER)
+	@$(RM) $(OBJS_CLIENT) $(OBJS_SERVER) $(OBJS_CLIENT_BONUS) $(OBJS_SERVER_BONUS)
 
 fclean: clean
-	@$(RM) $(NAME_CLIENT) $(NAME_SERVER)
+	@$(RM) $(NAME_CLIENT) $(NAME_SERVER) $(NAME_CLIENT_BONUS) $(NAME_SERVER_BONUS)
 
 re: fclean all
 
