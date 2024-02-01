@@ -53,3 +53,7 @@ dkms.conf
 
 # Other
 .vscode/
+client
+server
+client_bonus
+server_bonus
