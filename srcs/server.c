@@ -19,7 +19,8 @@ void	signal_handler(int signal, siginfo_t *info, void *context)
 
 	c = 0;
 	bit = -1;
-	if (kill(info->si_pid) < 0)
+	(void)context;
+	if (kill(info->si_pid, 0) < 0)
 	{
 		ft_printf("Signal can't be send to PID: %d\n", info->si_pid);
 		exit(EXIT_FAILURE);
@@ -32,10 +33,7 @@ void	signal_handler(int signal, siginfo_t *info, void *context)
 		c &= ~(1 << bit);
 	if (!bit && c)
 		write(1, &c, 1);
-	else if (!bit && !c)
-		kill(info->si_pid, SIGUSR2);
 	bit--;
-	kill(info->si_pid, SIGUSR1);
 }
 
 int	main(void)
@@ -55,6 +53,6 @@ int	main(void)
 	printf("PID: %d\n", getpid());
 	while (1)
 		pause();
-	reutrn (0);
+	return (0);
 }
 
