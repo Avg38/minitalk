@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/02 14:09:11 by avialle-          #+#    #+#             */
+/*   Updated: 2024/02/02 14:11:10 by avialle-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minitalk.h"
 
 int	ft_strlen(char *str)
@@ -21,24 +33,27 @@ int	ft_isdigit(int c)
 	return (c >= '0' && c <= '9');
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *nptr)
 {
-	long	nbr;
-	int		i;
-	int		sign;
+	int			i;
+	long long	nbr;
+	int			sign;
 
 	i = 0;
 	nbr = 0;
 	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 14))
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && (nptr[i] <= 13)))
 		i++;
-	if (str[i] == '+' || str[i] == '-')
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		if (str[i] == '-')
-			sign = -1;
+		if (nptr[i] == '-')
+			sign = -sign;
 		i++;
 	}
-	while (ft_isdigit(str[i]))
-		nbr = nbr * 10 + (str[i++] + 0);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		nbr = nbr * 10 + nptr[i] - 48;
+		i++;
+	}
 	return ((int)(nbr * sign));
 }

@@ -6,19 +6,17 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:23:47 by avialle-          #+#    #+#             */
-/*   Updated: 2024/01/30 13:44:32 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:22:36 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-void	signal_handler(int signal, siginfo_t *info, void *context)
+void	handler_signal(int signal, siginfo_t *info, void *context)
 {
-	static unsigned	char	c;
-	static int				bit;
+	static unsigned	char	c = 0;
+	static int				bit = -1;
 
-	c = 0;
-	bit = -1;
 	(void)context;
 	if (kill(info->si_pid, 0) < 0)
 	{
@@ -50,7 +48,7 @@ int	main(void)
 	action.sa_flags = SA_SIGINFO;
 	action.sa_mask = signals;
 	action.sa_handler = NULL;
-	action.sa_sigaction = signal_handler;
+	action.sa_sigaction = handler_signal;
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
 	ft_printf("PID: %d\n", getpid());

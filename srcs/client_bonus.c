@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:23:52 by avialle-          #+#    #+#             */
-/*   Updated: 2024/01/30 11:51:24 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:23:05 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	g_bit_handler;
 
-void validation_server(int signal)
+void	validation_server(int signal)
 {
 	if (signal == SIGUSR2)
 	{
@@ -53,7 +53,7 @@ int	check_args(int ac, char **av)
 	return (pid);
 }
 
-void	send_bit(int pid, char c)
+void	send_bit(pid_t pid, char c)
 {
 	int	bit;
 
@@ -86,5 +86,4 @@ int	main(int ac, char **av)
 	send_bit(pid, 0);
 	while (1)
 		pause();
-	return (0);
 }

@@ -53,6 +53,7 @@ dkms.conf
 
 # Other
 .vscode/
+martejo/
 client
 server
 client_bonus

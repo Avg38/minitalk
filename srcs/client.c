@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:39:34 by avialle-          #+#    #+#             */
-/*   Updated: 2024/01/30 13:45:19 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:11:09 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	send_bit(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(10);
-		bit++;
+		bit--;
+		while (g_bit_handler != 1)
+			usleep(100);
 	}
 }
 
