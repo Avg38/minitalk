@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:39:31 by avialle-          #+#    #+#             */
-/*   Updated: 2024/01/30 13:44:38 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:22:21 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	signal_handler(int signal, siginfo_t *info, void *context)
 {
-	static unsigned char	c;
-	static int				bit;
+	static unsigned char	c = 0;
+	static int				bit = -1;
 
-	c = 0;
-	bit = -1;
 	(void)context;
 	if (kill(info->si_pid, 0) < 0)
 	{
