@@ -6,12 +6,12 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:54:06 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/02 14:14:29 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:24:01 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
-#define MINITALK_H
+# define MINITALK_H
 
 # include <signal.h>
 # include <stdlib.h>

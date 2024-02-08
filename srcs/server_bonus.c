@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:23:47 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/02 14:22:36 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:23:17 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handler_signal(int signal, siginfo_t *info, void *context)
 {
-	static unsigned	char	c = 0;
+	static unsigned char	c = 0;
 	static int				bit = -1;
 
 	(void)context;
