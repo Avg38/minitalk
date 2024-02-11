@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:09:11 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/08 17:38:40 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:32:23 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,27 @@ int	ft_atoi(const char *nptr)
 	return ((int)(nbr * sign));
 }
 
+char	*ft_strjoin_char(char *str, unsigned long long *len, char c)
+{
+	char		*dest;
+	int			i;
 
-
-// char	*ft_strdup(char *str)
-// {
-// 	char	*result;
-// 	size_t	len;
-
-// 	len = ft_strlen(str);
-// 	result = (char *)malloc((len + 1) * sizeof(char));
-// 	if (!result)
-// 		return (NULL);
-// 	len = 0;
-// 	while (str[len])
-// 	{
-// 		result[len] = str[len];
-// 		len++;
-// 	}
-// 	result[len] = 0;
-// 	return (result);
-// }
+	dest = (char *)malloc((*len + 1) * sizeof(char));
+	(*len)++;
+	if (!dest)
+		return (NULL);
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			dest[i] = str[i];
+			i++;
+		}
+	}
+	dest[i] = c;
+	dest[++i] = 0;
+	if (str)
+		free(str);
+	return (dest);
+}

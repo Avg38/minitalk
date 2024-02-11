@@ -1,24 +1,19 @@
 SRCS	= ft_utils.c ft_printf1.c ft_printf2.c
-
 OBJS	= ${SRCS:.c=.o}
-
 NAME	= libft.a
-
 CFLAGS	= -Wall -Wextra -Werror
-
 RM	= rm -rf
 
-
-%.o:	%.c libft.h 
-	@gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+all:	${NAME}
 
 ${NAME}:	${OBJS}
 		@ar rc ${NAME} ${OBJS}
 
-all:	${NAME}
+%.o:	%.c libft.h 
+	@gcc ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean:
-		${RM} *.o
+		${RM} ${OBJS}
 
 fclean:		clean
 		${RM} ${NAME}

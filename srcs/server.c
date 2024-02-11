@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:39:31 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/11 14:48:47 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:22:33 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,6 @@ void	print_str(char **str, unsigned long long *i, siginfo_t *info)
 	*str = NULL;
 	*i = 1;
 	kill(info->si_pid, SIGUSR2);
-}
-
-char	*ft_strjoin_char(char *str, unsigned long long *len, char c)
-{
-	char		*dest;
-	int			i;
-
-	dest = (char *)malloc((*len + 1) * sizeof(char));
-	(*len)++;
-	if (!dest)
-		return (NULL);
-	i = 0;
-	if (str)
-	{
-		while (str[i])
-		{
-			dest[i] = str[i];
-			i++;
-		}
-	}
-	dest[i] = c;
-	dest[++i] = 0;
-	if (str)
-		free(str);
-	return (dest);
 }
 
 void	handler_signal(int signal, siginfo_t *info, void *context)
@@ -92,4 +67,3 @@ int	main(void)
 		pause();
 	return (0);
 }
-
