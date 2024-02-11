@@ -6,18 +6,28 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:39:31 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/08 17:44:08 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:48:47 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-char	*ft_strjoin_char(char *str, int len, char c)
+void	print_str(char **str, unsigned long long *i, siginfo_t *info)
+{
+	ft_printf("%s", *str);
+	free(*str);
+	*str = NULL;
+	*i = 1;
+	kill(info->si_pid, SIGUSR2);
+}
+
+char	*ft_strjoin_char(char *str, unsigned long long *len, char c)
 {
 	char		*dest;
 	int			i;
 
-	dest = (char *)malloc((len + 1) * sizeof(char));
+	dest = (char *)malloc((*len + 1) * sizeof(char));
+	(*len)++;
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -40,7 +50,7 @@ void	handler_signal(int signal, siginfo_t *info, void *context)
 {
 	static unsigned char		c = 0;
 	static int					bit = -1;
-	static char					*dest = NULL;
+	static char					*str = NULL;
 	static unsigned long long	i = 1;
 
 	(void)context;
@@ -56,15 +66,9 @@ void	handler_signal(int signal, siginfo_t *info, void *context)
 	else if (signal == SIGUSR2)
 		c &= ~(1 << bit);
 	if (!bit && c)
-		dest = ft_strjoin_char(dest, i++, c);
+		str = ft_strjoin_char(str, &i, c);
 	else if (!bit && !c)
-	{
-		ft_printf("%s", dest);
-		free(dest);
-		dest = NULL;
-		i = 1;
-		kill(info->si_pid, SIGUSR2);
-	}
+		print_str(&str, &i, info);
 	bit--;
 	kill(info->si_pid, SIGUSR1);
 }
