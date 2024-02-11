@@ -12,11 +12,36 @@
 
 #include "../include/minitalk.h"
 
+char	*ft_strjoin_char(char *str, int len, char c)
+{
+	char		*dest;
+	int			i;
+
+	dest = (char *)malloc((len + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			dest[i] = str[i];
+			i++;
+		}
+	}
+	dest[i] = c;
+	dest[++i] = 0;
+	if (str)
+		free(str);
+	return (dest);
+}
+
 void	handler_signal(int signal, siginfo_t *info, void *context)
 {
-	static unsigned char	c = 0;
-	static int				bit = -1;
-	static char				*dest = NULL;
+	static unsigned char		c = 0;
+	static int					bit = -1;
+	static char					*dest = NULL;
+	static unsigned long long	i = 1;
 
 	(void)context;
 	if (kill(info->si_pid, 0) < 0)
@@ -30,15 +55,16 @@ void	handler_signal(int signal, siginfo_t *info, void *context)
 		c |= (1 << bit);
 	else if (signal == SIGUSR2)
 		c &= ~(1 << bit);
-	if (!bit && !c)
+	if (!bit && c)
+		dest = ft_strjoin_char(dest, i++, c);
+	else if (!bit && !c)
 	{
 		ft_printf("%s", dest);
 		free(dest);
+		dest = NULL;
+		i = 1;
 		kill(info->si_pid, SIGUSR2);
 	}
-	else if (!bit && c)
-		dest = ft_strjoin(dest, c);
-	ft_printf("%s", dest);
 	bit--;
 	kill(info->si_pid, SIGUSR1);
 }

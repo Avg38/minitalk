@@ -31,7 +31,7 @@ void	ft_putstr_fd(char *s, int fd);
 int		ft_atoi(const char *nptr);
 int		ft_strlen(char *str);
 int		ft_isdigit(int c);
-char	*ft_strjoin(char *s1, char c);
-char	*ft_strdup(char *str);
+// char	*ft_strjoin_char(char *str, int len, char c);
+// char	*ft_strdup(char *str);
 
 #endif
