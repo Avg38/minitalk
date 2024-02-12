@@ -6,11 +6,16 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:09:11 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/11 16:32:23 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:27:45 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
+
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
 
 int	ft_strlen(char *str)
 {
@@ -20,17 +25,6 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	ft_putstr_fd(char *str, int fd)
-{
-	if (!str)
-		write(fd, str, ft_strlen(str));
-}
-
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
 }
 
 int	ft_atoi(const char *nptr)

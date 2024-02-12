@@ -27,7 +27,6 @@ void	ft_print_hexa(unsigned int nb, char *base, size_t *len);
 void	ft_print_unsigned(unsigned int nb, size_t *len);
 int		ft_printf(const char *str, ...);
 /**ft_Utils**/
-void	ft_putstr_fd(char *s, int fd);
 int		ft_atoi(const char *nptr);
 int		ft_strlen(char *str);
 int		ft_isdigit(int c);

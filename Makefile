@@ -20,33 +20,33 @@ bonus: force $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
 
 
 $(NAME_SERVER): $(OBJS_SERVER)
-	$(CC) $(CFLAGS) -Iinclude -Ilibft $(OBJS_SERVER) -o $(NAME_SERVER) -Llibft -lft
+	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_SERVER) -o $(NAME_SERVER) -Llibft -lft
 
 $(NAME_CLIENT): $(OBJS_CLIENT)
-	$(CC) $(CFLAGS) -Iinclude -Ilibft $(OBJS_CLIENT) -o $(NAME_CLIENT) -Llibft -lft
+	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_CLIENT) -o $(NAME_CLIENT) -Llibft -lft
 
 $(NAME_SERVER_BONUS): $(OBJS_SERVER_BONUS)
-	$(CC) $(CFLAGS) -Iinclude -Ilibft $(OBJS_SERVER_BONUS) -o $(NAME_SERVER_BONUS) -Llibft -lft
+	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_SERVER_BONUS) -o $(NAME_SERVER_BONUS) -Llibft -lft
 
 $(NAME_CLIENT_BONUS): $(OBJS_CLIENT_BONUS)
-	$(CC) $(CFLAGS) -Iinclude -Ilibft $(OBJS_CLIENT_BONUS) -o $(NAME_CLIENT_BONUS) -Llibft -lft
+	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_CLIENT_BONUS) -o $(NAME_CLIENT_BONUS) -Llibft -lft
 
 %.o: %.c include/minitalk.h Makefile
-	$(CC) $(CFLAGS) -Iinclude -Ilibft -c $< -o $@
+	gcc $(CFLAGS) -Iinclude -Ilibft -c $< -o $@
 
 clean:
-	$(RM) $(OBJS_SERVER) $(OBJS_CLIENT)
-	$(RM) $(OBJS_SERVER_BONUS) $(OBJS_CLIENT_BONUS)
-	make clean -C libft
+	@$(RM) $(OBJS_SERVER) $(OBJS_CLIENT)
+	@$(RM) $(OBJS_SERVER_BONUS) $(OBJS_CLIENT_BONUS)
+	@make clean -C libft
 
 fclean: clean
-	$(RM) $(NAME_SERVER) $(NAME_CLIENT)
-	$(RM) $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
-	make fclean -C libft
+	@$(RM) $(NAME_SERVER) $(NAME_CLIENT)
+	@$(RM) $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
+	@make fclean -C libft
 
 re: fclean all
 
 force :
-	make -C libft
+	@make -C libft
 
 .PHONY: clean fclean re all force

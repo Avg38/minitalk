@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:28:02 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/08 16:31:13 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:27:01 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	check_args(int ac, char **av)
 
 	if (ac != 3 || !av[2][0])
 	{
-		ft_putstr_fd("Error: arguments, please try again.\n", 2);
+		ft_printf("Error: arguments, please try again.\n");
 		exit(EXIT_FAILURE);
 	}
 	pid = ft_atoi(av[1]);
 	if (pid == 0)
 	{
-		ft_putstr_fd("Error: PID 0 reserved for the kernel.\n", 2);
+		ft_printf("Error: PID 0 reserved for the kernel.\n");
 		exit(EXIT_FAILURE);
 	}
 	i = -1;
@@ -43,7 +43,7 @@ int	check_args(int ac, char **av)
 	{
 		if (!(ft_isdigit(av[1][i]) || pid < 0))
 		{
-			ft_putstr_fd("Error: PID only has positive decimal numbers", 2);
+			ft_printf("Error: PID only has positive decimal numbers\n");
 			exit(EXIT_FAILURE);
 		}
 	}
