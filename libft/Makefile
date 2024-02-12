@@ -10,7 +10,7 @@ ${NAME}:	${OBJS}
 		@ar rc ${NAME} ${OBJS}
 
 %.o:	%.c libft.h 
-	@gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+	gcc ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean:
 		${RM} ${OBJS}
