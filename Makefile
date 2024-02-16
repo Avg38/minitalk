@@ -15,23 +15,25 @@ NAME_CLIENT = client
 NAME_SERVER_BONUS = server_bonus
 NAME_CLIENT_BONUS = client_bonus
 
+CFLAGS	= -Wall -Wextra -Werror
+
 all:force $(NAME_SERVER) $(NAME_CLIENT)
 bonus: force $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
 
 
-$(NAME_SERVER): $(OBJS_SERVER)
+$(NAME_SERVER): $(OBJS_SERVER) libft/libft.a
 	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_SERVER) -o $(NAME_SERVER) -Llibft -lft
 
-$(NAME_CLIENT): $(OBJS_CLIENT)
+$(NAME_CLIENT): $(OBJS_CLIENT) libft/libft.a
 	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_CLIENT) -o $(NAME_CLIENT) -Llibft -lft
 
-$(NAME_SERVER_BONUS): $(OBJS_SERVER_BONUS)
+$(NAME_SERVER_BONUS): $(OBJS_SERVER_BONUS) libft/libft.a
 	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_SERVER_BONUS) -o $(NAME_SERVER_BONUS) -Llibft -lft
 
-$(NAME_CLIENT_BONUS): $(OBJS_CLIENT_BONUS)
+$(NAME_CLIENT_BONUS): $(OBJS_CLIENT_BONUS) libft/libft.a
 	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_CLIENT_BONUS) -o $(NAME_CLIENT_BONUS) -Llibft -lft
 
-%.o: %.c include/minitalk.h Makefile
+%.o: %.c include/minitalk.h Makefile libft/libft.h
 	gcc $(CFLAGS) -Iinclude -Ilibft -c $< -o $@
 
 clean:
