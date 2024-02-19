@@ -6,7 +6,7 @@
 /*   By: avialle- <avialle-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:28:02 by avialle-          #+#    #+#             */
-/*   Updated: 2024/02/12 13:27:01 by avialle-         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:26:12 by avialle-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	check_args(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	pid = ft_atoi(av[1]);
-	if (pid == 0)
+	if (pid == -1)
 	{
-		ft_printf("Error: PID 0 reserved for the kernel.\n");
+		ft_printf("Error: PID -1 reserved for the kernel.\n");
 		exit(EXIT_FAILURE);
 	}
 	i = -1;

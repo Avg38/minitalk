@@ -16,8 +16,9 @@ NAME_SERVER_BONUS = server_bonus
 NAME_CLIENT_BONUS = client_bonus
 
 CFLAGS	= -Wall -Wextra -Werror
+RM		= rm -rf
 
-all:force $(NAME_SERVER) $(NAME_CLIENT)
+all: force $(NAME_SERVER) $(NAME_CLIENT)
 bonus: force $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
 
 
@@ -39,16 +40,16 @@ $(NAME_CLIENT_BONUS): $(OBJS_CLIENT_BONUS) libft/libft.a
 clean:
 	@$(RM) $(OBJS_SERVER) $(OBJS_CLIENT)
 	@$(RM) $(OBJS_SERVER_BONUS) $(OBJS_CLIENT_BONUS)
-	@make clean -C libft
+	@make clean -C libft -s
 
 fclean: clean
 	@$(RM) $(NAME_SERVER) $(NAME_CLIENT)
 	@$(RM) $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
-	@make fclean -C libft
+	@make fclean -C libft -s
 
 re: fclean all
 
 force :
-	@make -C libft
+	@make -C libft -s
 
 .PHONY: clean fclean re all force
