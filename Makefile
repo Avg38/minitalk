@@ -34,7 +34,7 @@ $(NAME_SERVER_BONUS): $(OBJS_SERVER_BONUS) libft/libft.a
 $(NAME_CLIENT_BONUS): $(OBJS_CLIENT_BONUS) libft/libft.a
 	gcc $(CFLAGS) -Iinclude -Ilibft $(OBJS_CLIENT_BONUS) -o $(NAME_CLIENT_BONUS) -Llibft -lft
 
-%.o: %.c include/minitalk.h Makefile libft/libft.h
+%.o: %.c include/minitalk.h Makefile libft/libft.h libft/libft.a
 	gcc $(CFLAGS) -Iinclude -Ilibft -c $< -o $@
 
 clean:
